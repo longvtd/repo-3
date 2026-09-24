@@ -19,6 +19,7 @@ public class ProductService {
     }
 
     public Product findById(Long id) {
+       if(id == null) return null;
        return repository.findById(id).get();
     }
 }
