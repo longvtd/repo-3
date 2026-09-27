@@ -19,6 +19,16 @@ public class OrderService {
     }
 
     public Order findById(Long id) {
+    	if(!checkPkId(id)) {
+    		return null;
+    	}
        return repository.findById(id).get();
+    }
+    
+    public boolean checkPkId(Long id) {
+    	if(id == null) {
+    		return false;
+    	}
+        return true;
     }
 }
