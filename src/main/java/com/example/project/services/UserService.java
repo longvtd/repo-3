@@ -47,7 +47,7 @@ public class UserService {
             if(id == null || id == 0) return;
             if(obj == null) return;
             User entity = repository.getReferenceById(id);
-            updateData(entity, obj);
+            updateDataUser(entity, obj);
             return repository.save(entity);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
@@ -55,6 +55,12 @@ public class UserService {
     }
 
     private void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
+    }
+
+    private void updateDataUser(User entity, User obj) {
         entity.setName(obj.getName());
         entity.setEmail(obj.getEmail());
         entity.setPhone(obj.getPhone());
