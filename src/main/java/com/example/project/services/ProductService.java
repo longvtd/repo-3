@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.project.entities.Product;
+import com.example.project.entities.User;
 import com.example.project.repositories.ProductRepository;
 
 @Service
@@ -13,6 +14,8 @@ public class ProductService {
     
     @Autowired
     private ProductRepository repository;
+    @Autowired
+	private UserService service;
 
     public List<Product> findAll() {
         return repository.findAll();
@@ -22,4 +25,13 @@ public class ProductService {
        if(id == null) return null;
        return repository.findById(id).get();
     }
+
+	public void saveProduct(List<Product> listProduct) {
+		Long id = (long) 1.0;
+		User obj = service.findById(id);
+		for (Product product : listProduct) {
+			product.setName(obj.getName());
+			repository.save(product);
+		}
+	}
 }

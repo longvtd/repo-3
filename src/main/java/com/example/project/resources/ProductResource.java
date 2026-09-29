@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +31,12 @@ public class ProductResource {
 	public ResponseEntity<Product> findById(@PathVariable Long id) {
 		Product obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@PostMapping(value = "/save")
+	@Operation(summary = "Save product", description = "Creates an product and triggers sibling inventory, billing, and notification flows")
+	public BodyBuilder saveProduct(@PathVariable List<Product> listProduct) {
+		service.saveProduct(listProduct);
+		return ResponseEntity.ok();
 	}
 }

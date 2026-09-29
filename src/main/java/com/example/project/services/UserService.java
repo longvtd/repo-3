@@ -44,8 +44,8 @@ public class UserService {
 
     public User update(Long id, User obj) {
         try {
-            if(id == null || id == 0) return;
-            if(obj == null) return;
+            if(id == null || id == 0) return null;
+            if(obj == null) return null;
             User entity = repository.getReferenceById(id);
             updateData(entity, obj);
             updateDataUser(entity, obj);
