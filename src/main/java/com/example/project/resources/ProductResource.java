@@ -39,4 +39,11 @@ public class ProductResource {
 		service.saveProduct(listProduct);
 		return ResponseEntity.ok();
 	}
+	
+	@PostMapping(value = "update")
+	@Operation(summary = "Save product", description = "Creates an product and triggers sibling inventory, billing, and notification flows")
+	public BodyBuilder updateProduct(@PathVariable List<Product> listProduct) {
+		service.updateProduct(listProduct);
+		return ResponseEntity.ok();
+	}
 }

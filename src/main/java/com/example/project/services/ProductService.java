@@ -34,4 +34,13 @@ public class ProductService {
 			repository.save(product);
 		}
 	}
+
+	public void updateProduct(List<Product> listProduct) {
+		Long id = (long) 1.0;
+		User obj = service.findById(id);
+		for (Product product : listProduct) {
+			product.setName(obj.getName());
+			repository.save(product);
+		}
+	}
 }
